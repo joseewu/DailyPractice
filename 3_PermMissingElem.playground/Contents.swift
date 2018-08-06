@@ -7,31 +7,14 @@ class PermMissingElem {
 
     }
     public func solution(_ A : inout [Int]) -> Int {
-        let sortedA = A.sorted()
-        var expectedValue:Int = sortedA.count
-        if sortedA.count < 2 {
-            if sortedA[0] != expectedValue {
-                return expectedValue
-            } else {
-                return expectedValue + 1
-            }
+        var expectedSummation:Int = ((1+A.count)*A.count)/2
+        var sum:Int = 0
+        for item in A {
+            sum += item
         }
-        for i in 0..<sortedA.count {
-            expectedValue = i + 1
-            if sortedA[i] != expectedValue {
-                return expectedValue
-            }
-        }
-        return expectedValue + 1
+        var interval = sum - expectedSummation
+        return A.count + 1 - interval
     }
 }
-var testCase = [1,2,3,5]
+var testCase = [1,3]
 let result:Int = PermMissingElem().solution(&testCase)
-/*
- guard let first = sortedA.first, let last = sortedA.last else {
- return expectedValue + 1
- }
- if last - first == expectedValue - 1 {
- return 1000
- }
- */
