@@ -11,24 +11,25 @@ class FrogRiverOne {
         }
         var distanceArray:[Int] = Array(repeating: -1, count: X)
         var i:Int = 0
-        var minShowTime = distanceArray[0..<X-1].min() ?? -1
-        while minShowTime == -1 {
+        var minShowTime:Int = 0
+        while true {
             if i >= X {
                 return -1
             }
             for item in A {
                 let position = item - 1
                 if position >= 0 {
-                    distanceArray[position] = i
+                    if distanceArray[position] == -1 {
+                        minShowTime += 1
+                    }
+                    distanceArray[position] += 1
+                    if minShowTime == X {
+                        return i
+                    }
                 }
                 i += 1
-                minShowTime = distanceArray[0..<X].min() ?? -1
-                if minShowTime != -1 {
-                    return distanceArray.last ?? -1
-                }
             }
         }
-        return -1
     }
 }
 var distance:Int = 3
